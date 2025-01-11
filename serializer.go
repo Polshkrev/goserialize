@@ -73,7 +73,7 @@ func (serializer Serializer[Type]) WriteObject(data Type) (Object, *gopolutils.E
 	}
 	var unmarshalError error = serializer.reader(rawBytes, &object)
 	if unmarshalError != nil {
-		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not read object '%+v': %s.", data, unmarshalError.Error()))
+		return nil, gopolutils.NewNamedException("UnmarshalError", fmt.Sprintf("Can not read object '%+v': %s.", data, unmarshalError.Error()))
 	}
 	return object, nil
 }
