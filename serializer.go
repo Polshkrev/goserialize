@@ -15,6 +15,8 @@ type Serializer[Type any] struct {
 
 // Construct a new serializer.
 // Returns a pointer to a new serializer of a given type with a given reader and writer.
+//
+// ? This function could probably be renamed in the future to make use of the domain since this is the main entry point of the library and no other constructors are defined at the moment.
 func NewSerializer[Type any](reader Reader, writer Writer) *Serializer[Type] {
 	var serializer *Serializer[Type] = new(Serializer[Type])
 	serializer.reader = reader
@@ -71,7 +73,7 @@ func (serializer Serializer[Type]) WriteObject(data Type) (Object, *gopolutils.E
 	}
 	var unmarshalError error = serializer.reader(rawBytes, &object)
 	if unmarshalError != nil {
-		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not read object '%+v': %s.", data, unmarshalError.Error()))
+		return nil, gopolutils.NewNamedException("UnmarshalError", fmt.Sprintf("Can not read object '%+v': %s.", data, unmarshalError.Error()))
 	}
 	return object, nil
 }
