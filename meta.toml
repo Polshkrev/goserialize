@@ -5,7 +5,7 @@ description = "A simple golang serialization library."
 
 [project.version]
 minor = 3
-patch = 2
+patch = 3
 
 [license]
 type = "MIT"
