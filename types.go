@@ -8,7 +8,7 @@ import (
 )
 
 // Serializable map object type alias.
-type Object map[string]any
+type Object = map[string]any
 
 const (
 	// Default json file extension.
@@ -20,7 +20,7 @@ const (
 )
 
 // Generic marshal type. The writer takes an object type and returns the raw byte content.
-type Writer func(any) ([]byte, error)
+type Writer = func(any) ([]byte, error)
 
 // Generic unmarshal type. The reader type takes in the raw byte content and a pointer to the object.
 type Reader = func([]byte, any) error
