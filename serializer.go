@@ -80,7 +80,7 @@ func (serializer Serializer[Type]) WriteObject(data Type) (Object, *gopolutils.E
 // Returns a reflected object slice.
 // If the given data can not be reflected, either writing or reading, an appropriate error is returned with a nil data pointer.
 func (serializer Serializer[Type]) WriteList(data collections.View[Type]) ([]Object, *gopolutils.Exception) {
-	var objectList []Object = make([]Object, 0)
+	var objectList []Object = make([]Object, 0, data.Size())
 	var rawObject Type
 	for _, rawObject = range data.Collect() {
 		var object Object
