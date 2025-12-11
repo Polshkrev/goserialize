@@ -63,7 +63,7 @@ func ObjectSliceToBytes(objects []Object, writer Writer) ([]byte, *gopolutils.Ex
 	var marshalError error
 	result, marshalError = writer(objects)
 	if marshalError != nil {
-		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not write data '%+v': %s", marshalError.Error()))
+		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not write data '%+v': %s", objects, marshalError.Error()))
 	}
 	return result, nil
 }
