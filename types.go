@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/BurntSushi/toml"
+	csv "github.com/trimmer-io/go-csv"
 	"gopkg.in/yaml.v2"
 )
 
@@ -17,6 +18,8 @@ const (
 	YAMLType string = "yaml"
 	// Default toml file extension.
 	TOMLType string = "toml"
+	// Default csv file extension.
+	CSVType string = "csv"
 )
 
 // Generic marshal type. The writer takes an object type and returns the raw byte content.
@@ -32,10 +35,14 @@ var (
 	YAMLReader Reader = yaml.Unmarshal
 	// Default toml reader.
 	TOMLReader Reader = toml.Unmarshal
+	// Default csv reader.
+	CSVReader Reader = csv.Unmarshal
 	// Default json writer.
 	JSONWriter Writer = json.Marshal
 	// Default yaml writer.
 	YAMLWriter Writer = yaml.Marshal
 	// Default toml writer.
 	TOMLWriter Writer = toml.Marshal
+	// Default csv writer.
+	CSVWriter Writer = csv.Marshal
 )
