@@ -1,6 +1,6 @@
 # Types
 This module defines some types that standardize the types used in the [serializer](/docs/en-UK/serializer.md) module.
-The only serialization types that supported at the moment are `JSON`, `YAML`, and `TOML`.
+The only serialization types that supported at the moment are `JSON`, `YAML`, `TOML`, and `CSV`.
 
 #### Object
 This module defines a type alias that will be familiar to any javascript developers. An object, is essentially a json object. This type alias uses a mapping of strings to an `any` type due to that being the most flexable way of describing what data type can be serialized.
