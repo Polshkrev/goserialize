@@ -12,13 +12,13 @@ import (
 type Object = map[string]any
 
 const (
-	// Default json file extension.
+	// Default json file extension. Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next version.
 	JSONType string = "json"
-	// Default yaml file extenstion.
+	// Default yaml file extenstion. Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next version.
 	YAMLType string = "yaml"
-	// Default toml file extension.
+	// Default toml file extension. Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next version.
 	TOMLType string = "toml"
-	// Default csv file extension.
+	// Default csv file extension. Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next version.
 	CSVType string = "csv"
 )
 
