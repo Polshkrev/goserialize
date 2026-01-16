@@ -4,7 +4,7 @@ author = "Polshkrev"
 description = "A simple golang serialization library."
 
 [project.version]
-minor = 5
+minor = 6
 
 [license]
 type = "MIT"
