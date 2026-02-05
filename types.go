@@ -12,13 +12,21 @@ import (
 type Object = map[string]any
 
 const (
-	// Default json file extension. Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next version.
+	// Default json file extension.
+	//
+	// Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next minor version update.
 	JSONType string = "json"
-	// Default yaml file extenstion. Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next version.
+	// Default yaml file extenstion.
+	//
+	// Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next minor version update.
 	YAMLType string = "yaml"
-	// Default toml file extension. Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next version.
+	// Default toml file extension.
+	//
+	// Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next minor version update.
 	TOMLType string = "toml"
-	// Default csv file extension. Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next version.
+	// Default csv file extension.
+	//
+	// Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next minor version update.
 	CSVType string = "csv"
 )
 
@@ -27,6 +35,14 @@ type Writer = func(any) ([]byte, error)
 
 // Generic unmarshal type. The reader type takes in the raw byte content and a pointer to the object.
 type Reader = func([]byte, any) error
+
+// Closure around the generic writer function to allow for indenting when serializing json.
+// Returns a writer obtained from indent-marshalling of the passed in data.
+func jsonIndentWriter(indent string) Writer {
+	return func(data any) ([]byte, error) {
+		return json.MarshalIndent(data, "", indent)
+	}
+}
 
 var (
 	// Default json reader.
@@ -39,9 +55,9 @@ var (
 	CSVReader Reader = csv.Unmarshal
 	// Default json writer.
 	JSONWriter Writer = json.Marshal
+	// Indented writer for json types. The indent is based on tabs instead of spaces.
+	JSONIndentWriter Writer = jsonIndentWriter("\t")
 	// Default yaml writer.
-	YAMLWriter Writer = yaml.Marshal
-	// Default toml writer.
 	TOMLWriter Writer = toml.Marshal
 	// Default csv writer.
 	CSVWriter Writer = csv.Marshal
