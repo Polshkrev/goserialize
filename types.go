@@ -58,6 +58,8 @@ var (
 	// Indented writer for json types. The indent is based on tabs instead of spaces.
 	JSONIndentWriter Writer = jsonIndentWriter("\t")
 	// Default yaml writer.
+	YAMLWriter Writer = yaml.Marshal
+	// Default toml reader.
 	TOMLWriter Writer = toml.Marshal
 	// Default csv writer.
 	CSVWriter Writer = csv.Marshal
