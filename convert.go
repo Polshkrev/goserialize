@@ -25,7 +25,7 @@ func BytesToObject(content []byte, reader Reader) (Object, *gopolutils.Exception
 	var object Object = make(Object, 0)
 	var unmarshalError error = reader(content, &object)
 	if unmarshalError != nil {
-		return nil, gopolutils.NewNamedException("UnmarshalError", fmt.Sprintf("Can not read data '%+v': '%s'.", content, unmarshalError.Error()))
+		return nil, gopolutils.NewNamedException("UnmarshalError", fmt.Sprintf("Can not read data '%+#v': '%s'.", content, unmarshalError.Error()))
 	}
 	return object, nil
 }
@@ -38,7 +38,7 @@ func ObjectToBytes(object Object, writer Writer) ([]byte, *gopolutils.Exception)
 	var marshalError error
 	result, marshalError = writer(object)
 	if marshalError != nil {
-		return nil, gopolutils.NewNamedException("MarhsalError", fmt.Sprintf("Can not write data '%+v': %s", object, marshalError.Error()))
+		return nil, gopolutils.NewNamedException("MarhsalError", fmt.Sprintf("Can not write data '%+#v': %s", object, marshalError.Error()))
 	}
 	return result, nil
 }
@@ -46,11 +46,11 @@ func ObjectToBytes(object Object, writer Writer) ([]byte, *gopolutils.Exception)
 // Convert a stream of bytes to a slice of objects.
 // Returns a slice of objects representing the stream of bytes.
 // If the stream of bytes can not be marshalled, a MarshalError is returned with a nil data pointer.
-func BytesToObjectSlice(content []byte, reader Reader) ([]Object, *gopolutils.Exception) {
+func BytesToObjectSlice(content []byte, reader Reader) (ObjectList, *gopolutils.Exception) {
 	var result []Object = make([]Object, 0)
 	var unmarshalError error = reader(content, &result)
 	if unmarshalError != nil {
-		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not read data '%+v': %s", content, unmarshalError.Error()))
+		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not read data '%+#v': %s", content, unmarshalError.Error()))
 	}
 	return result, nil
 }
@@ -58,12 +58,12 @@ func BytesToObjectSlice(content []byte, reader Reader) ([]Object, *gopolutils.Ex
 // Convert a slice of objects to a stream of bytes.
 // Returns a stream of bytes representing the slice of objects.
 // If the slice of objects can not be marshalled, a MarshallError is returned with a nil data pointer.
-func ObjectSliceToBytes(objects []Object, writer Writer) ([]byte, *gopolutils.Exception) {
+func ObjectSliceToBytes(objects ObjectList, writer Writer) ([]byte, *gopolutils.Exception) {
 	var result []byte
 	var marshalError error
 	result, marshalError = writer(objects)
 	if marshalError != nil {
-		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not write data '%+v': %s", objects, marshalError.Error()))
+		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not write data '%+#v': %s", objects, marshalError.Error()))
 	}
 	return result, nil
 }

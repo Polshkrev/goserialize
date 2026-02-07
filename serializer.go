@@ -45,7 +45,7 @@ func (serializer Serializer[Type]) ReadObject(data Object) (*Type, *gopolutils.E
 // Serialize a slice of objects into a typed view.
 // Returns a reflected type view.
 // If the given data can not be reflected, either writing or reading, an appropriate error is returned with a nil data pointer.
-func (serializer Serializer[Type]) ReadList(data []Object) (collections.View[Type], *gopolutils.Exception) {
+func (serializer Serializer[Type]) ReadList(data ObjectList) (collections.View[Type], *gopolutils.Exception) {
 	var typeList []Type = make([]Type, 0, len(data))
 	var rawObject Object
 	for _, rawObject = range data {
@@ -81,8 +81,8 @@ func (serializer Serializer[Type]) WriteObject(data Type) (Object, *gopolutils.E
 // Serialize a slice of objects into a typed view.
 // Returns a reflected object slice.
 // If the given data can not be reflected, either writing or reading, an appropriate error is returned with a nil data pointer.
-func (serializer Serializer[Type]) WriteList(data collections.View[Type]) ([]Object, *gopolutils.Exception) {
-	var objectList []Object = make([]Object, 0, data.Size())
+func (serializer Serializer[Type]) WriteList(data collections.View[Type]) (ObjectList, *gopolutils.Exception) {
+	var objectList ObjectList = make(ObjectList, 0, data.Size())
 	var rawObject Type
 	for _, rawObject = range data.Collect() {
 		var object Object
