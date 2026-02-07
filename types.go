@@ -59,7 +59,7 @@ var (
 	JSONIndentWriter Writer = jsonIndentWriter("\t")
 	// Default yaml writer.
 	YAMLWriter Writer = yaml.Marshal
-	// Default toml reader.
+	// Default toml writer.
 	TOMLWriter Writer = toml.Marshal
 	// Default csv writer.
 	CSVWriter Writer = csv.Marshal
