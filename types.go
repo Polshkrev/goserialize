@@ -11,24 +11,8 @@ import (
 // Serializable map object type alias.
 type Object = map[string]any
 
-const (
-	// Default json file extension.
-	//
-	// Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next minor version update.
-	JSONType string = "json"
-	// Default yaml file extenstion.
-	//
-	// Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next minor version update.
-	YAMLType string = "yaml"
-	// Default toml file extension.
-	//
-	// Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next minor version update.
-	TOMLType string = "toml"
-	// Default csv file extension.
-	//
-	// Deprecated: As of v0.6.0, due to new suffix enum defined in gopolutils, the extension types will be removed in the next minor version update.
-	CSVType string = "csv"
-)
+// Slice of serializable objects.
+type ObjectList = []Object
 
 // Generic marshal type. The writer takes an object type and returns the raw byte content.
 type Writer = func(any) ([]byte, error)
