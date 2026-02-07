@@ -1,4 +1,12 @@
 # Changelog
+## v0.8.0
+`Added`
+- `types`
+    - Added `ObjectList` type.
+
+`Removed`
+- `types`
+    - Removed all deprecated types.
 ## v0.7.0 - 2026-02-06
 `Added`
 - A new changelog has appeared.
