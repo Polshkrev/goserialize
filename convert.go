@@ -5,14 +5,16 @@ import (
 
 	"github.com/Polshkrev/gopolutils"
 	"github.com/Polshkrev/gopolutils/collections"
+	"github.com/Polshkrev/gopolutils/collections/safe"
 )
 
-// Convert a slice to a view.
-// Returns a new view containing the elements of the given slice.
+// Convert a slice into a concurrent-safe [collections.View].
+// Returns a new concurrent-safe [collections.View] containing the elements of the given slice.
 func SliceToView[Type any](items []Type) collections.View[Type] {
-	var item Type
-	var result collections.Collection[Type] = collections.NewArray[Type]()
-	for _, item = range items {
+	var result safe.Collection[Type] = safe.NewArray[Type]()
+	var i int
+	for i = range items {
+		var item Type = items[i]
 		result.Append(item)
 	}
 	return result
@@ -47,7 +49,7 @@ func ObjectToBytes(object Object, writer Writer) ([]byte, *gopolutils.Exception)
 // Returns a slice of objects representing the stream of bytes.
 // If the stream of bytes can not be marshalled, a MarshalError is returned with a nil data pointer.
 func BytesToObjectSlice(content []byte, reader Reader) (ObjectList, *gopolutils.Exception) {
-	var result []Object = make([]Object, 0)
+	var result ObjectList = make(ObjectList, 0)
 	var unmarshalError error = reader(content, &result)
 	if unmarshalError != nil {
 		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not read data '%+#v': %s", content, unmarshalError.Error()))

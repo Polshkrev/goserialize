@@ -47,8 +47,9 @@ func (serializer Serializer[Type]) ReadObject(data Object) (*Type, *gopolutils.E
 // If the given data can not be reflected, either writing or reading, an appropriate error is returned with a nil data pointer.
 func (serializer Serializer[Type]) ReadList(data ObjectList) (collections.View[Type], *gopolutils.Exception) {
 	var typeList []Type = make([]Type, 0, len(data))
-	var rawObject Object
-	for _, rawObject = range data {
+	var i int
+	for i = range data {
+		var rawObject Object = data[i]
 		var object *Type
 		var readError *gopolutils.Exception
 		object, readError = serializer.ReadObject(rawObject)
@@ -83,8 +84,9 @@ func (serializer Serializer[Type]) WriteObject(data Type) (Object, *gopolutils.E
 // If the given data can not be reflected, either writing or reading, an appropriate error is returned with a nil data pointer.
 func (serializer Serializer[Type]) WriteList(data collections.View[Type]) (ObjectList, *gopolutils.Exception) {
 	var objectList ObjectList = make(ObjectList, 0, data.Size())
-	var rawObject Type
-	for _, rawObject = range data.Collect() {
+	var i int
+	for i = range data.Collect() {
+		var rawObject Type = data.Collect()[i]
 		var object Object
 		var writeError *gopolutils.Exception
 		object, writeError = serializer.WriteObject(rawObject)
