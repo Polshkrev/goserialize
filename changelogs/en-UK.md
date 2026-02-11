@@ -1,5 +1,9 @@
 # Changelog
-## v0.8.0
+## v0.9.0 - 2026-02-11
+`Chnaged`
+- All serialization functions and methods are now concurrent-safe.
+
+## v0.8.0 - 2026-02-07
 `Added`
 - `types`
     - Added `ObjectList` type.
