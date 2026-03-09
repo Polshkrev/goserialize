@@ -31,7 +31,7 @@ func (serializer Serializer[Type]) ReadObject(data Object) (*Type, *gopolutils.E
 	var object *Type = new(Type)
 	var rawBytes []byte
 	var marshalError error
-	rawBytes, marshalError = serializer.writer(object)
+	rawBytes, marshalError = serializer.writer(data)
 	if marshalError != nil {
 		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not marshal data '%+v'.", data))
 	}
