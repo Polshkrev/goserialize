@@ -1,4 +1,8 @@
 # Changelog
+## v0.10.0 - 2026-03-23
+`Added`
+- `serializer`
+    - Added error contants to standardize the names of each of errors.
 ## v0.9.1 - 2026-03-09
 `Fixed`
 - `serializer`

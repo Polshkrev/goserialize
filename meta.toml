@@ -1,11 +1,10 @@
 [project]
 name = "goserialize"
-author = "Polshkrev"
+author = {name = "Polshkrev"}
 description = "A simple golang serialization library."
 
 [project.version]
-minor = 9
-patch = 1
+minor = 10
 
 [license]
 type = "MIT"
