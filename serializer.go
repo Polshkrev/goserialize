@@ -1,10 +1,13 @@
 package goserialize
 
 import (
-	"fmt"
-
 	"github.com/Polshkrev/gopolutils"
 	"github.com/Polshkrev/gopolutils/collections"
+)
+
+const (
+	MarshalError   gopolutils.ExceptionName = "MarshalError"
+	UnmarshalError gopolutils.ExceptionName = "UnmarshalError"
 )
 
 // A simple serializer.
@@ -33,11 +36,11 @@ func (serializer Serializer[Type]) ReadObject(data Object) (*Type, *gopolutils.E
 	var marshalError error
 	rawBytes, marshalError = serializer.writer(data)
 	if marshalError != nil {
-		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not marshal data '%+v'.", data))
+		return nil, gopolutils.NewNamedException(MarshalError, "Can not marshal data '%+v'.", data)
 	}
 	var unmarshalError error = serializer.reader(rawBytes, object)
 	if unmarshalError != nil {
-		return nil, gopolutils.NewNamedException("UnmarshalError", fmt.Sprintf("Can not unmarshal data '%+v'.", data))
+		return nil, gopolutils.NewNamedException(UnmarshalError, "Can not unmarshal data '%+v'.", data)
 	}
 	return object, nil
 }
@@ -70,11 +73,11 @@ func (serializer Serializer[Type]) WriteObject(data Type) (Object, *gopolutils.E
 	var marshalError error
 	rawBytes, marshalError = serializer.writer(data)
 	if marshalError != nil {
-		return nil, gopolutils.NewNamedException("MarshalError", fmt.Sprintf("Can not write object '%+v': '%s'.", data, marshalError.Error()))
+		return nil, gopolutils.NewNamedException(MarshalError, "Can not write object '%+v': '%s'.", data, marshalError.Error())
 	}
 	var unmarshalError error = serializer.reader(rawBytes, &object)
 	if unmarshalError != nil {
-		return nil, gopolutils.NewNamedException("UnmarshalError", fmt.Sprintf("Can not read object '%+v': %s.", data, unmarshalError.Error()))
+		return nil, gopolutils.NewNamedException(UnmarshalError, "Can not read object '%+v': %s.", data, unmarshalError.Error())
 	}
 	return object, nil
 }
