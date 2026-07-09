@@ -69,3 +69,15 @@ func ObjectSliceToBytes(objects ObjectList, writer Writer) ([]byte, *gopolutils.
 	}
 	return result, nil
 }
+
+// Convert a an [Object] to a [collections.View] of [collections.Pair]s.
+// Returns a stream of bytes representing the slice of objects.
+func ObjectToView(object Object) collections.View[*collections.Pair[string, any]] {
+	var result collections.Collection[*collections.Pair[string, any]] = collections.NewArray[*collections.Pair[string, any]]()
+	var key string
+	var value any
+	for key, value = range object {
+		result.Append(collections.NewPair(key, value))
+	}
+	return result
+}
